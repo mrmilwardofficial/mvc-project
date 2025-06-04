@@ -3,7 +3,9 @@ package com.example.mvc.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")  // ✅ avoid "user"
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
