@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: spring-mvc-project
+    runtime: java
+    buildCommand: ./mvnw clean install
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: spring.datasource.url
+        fromDatabase:
+          name: your-db-name
+          property: connectionString
+      - key: spring.datasource.username
+        fromDatabase:
+          name: your-db-name
+          property: user
+      - key: spring.datasource.password
+        fromDatabase:
+          name: mvc-project-db
+          property: password
+      - key: spring.jpa.hibernate.ddl-auto
+        value: update
+      - key: spring.session.store-type
+        value: jdbc
