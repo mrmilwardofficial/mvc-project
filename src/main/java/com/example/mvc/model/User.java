@@ -3,7 +3,7 @@ package com.example.mvc.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")  // ✅ avoid "user"
+@Table(name = "users") 
 public class User {
 
     @Id
