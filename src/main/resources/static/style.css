@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   margin: 40px auto;
-  max-width: 720px;
-  background: #f0f4f8;
+  max-width: 800px;
+  padding: 0 20px;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  background-attachment: fixed;
   color: #333;
 }
 
@@ -10,14 +14,15 @@ h1, h3 {
   color: #2c3e50;
 }
 
-input, textarea, button {
+input, textarea {
   width: 100%;
   margin: 10px 0;
   padding: 12px 16px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #ffe599;
+  border-radius: 12px;
   box-sizing: border-box;
+  background: #fffef6;
 }
 
 textarea {
@@ -26,46 +31,46 @@ textarea {
 }
 
 button {
-  background: #007BFF;
+  background: #ff6f61;
   color: white;
   border: none;
-  transition: background 0.3s;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 button:hover {
-  background: #0056b3;
+  background: #e74c3c;
+  transform: scale(1.05);
 }
 
 div.post {
   background: white;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  margin-bottom: 15px;
-  position: relative;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+div.post:hover {
+  transform: translateY(-4px);
 }
 
 div.post button {
   margin-top: 10px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 14px;
+  background: #ff5252;
+  border-radius: 16px;
   font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.3s;
+  padding: 6px 16px;
 }
-
-div.post button:hover {
-  background: #c0392b;
-}
-
 
 a {
   color: #007BFF;
   text-decoration: none;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 20px;
 }
