@@ -11,9 +11,16 @@ function login() {
     })
   })
     .then(res => res.text())
-    .then(alert)
+    .then(msg => {
+      if (msg.includes("successful")) {
+        window.location.href = "/admin.html";
+      } else {
+        alert(msg);
+      }
+    })
     .catch(err => console.error('Login error:', err));
 }
+
 
 function addPost() {
   fetch(`${api}/posts`, {
