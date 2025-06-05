@@ -1,4 +1,5 @@
-const api = 'http://localhost:8080/api';
+const api = '/api';
+
 
 function login() {
   fetch(`${api}/auth/login`, {
