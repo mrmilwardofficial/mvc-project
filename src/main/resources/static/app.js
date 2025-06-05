@@ -33,8 +33,12 @@ function addPost() {
     })
   })
     .then(res => res.text())
-    .then(alert)
-    .then(loadPosts)
+    .then(msg => {
+      alert(msg);
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+      loadPosts();
+    })
     .catch(err => console.error('Add post error:', err));
 }
 
@@ -43,18 +47,19 @@ function loadPosts() {
     .then(res => res.json())
     .then(posts => {
       const container = document.getElementById('posts') || document.getElementById('admin-posts');
-      if (!container) return; // ✅ Prevent error if not on posts/admin page
+      if (!container) return;
 
-      container.innerHTML = '';
+      container.innerHTML = `<p><strong>${posts.length}</strong> post(s)</p>`;
       posts.forEach(post => {
         const div = document.createElement('div');
+        div.classList.add('post');
         div.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>
           <button onclick="deletePost(${post.id})">Delete</button>`;
         container.appendChild(div);
       });
-    })
-    .catch(err => console.error('Load posts error:', err));
+    });
 }
+
 
 function deletePost(id) {
   fetch(`${api}/posts/${id}`, {
