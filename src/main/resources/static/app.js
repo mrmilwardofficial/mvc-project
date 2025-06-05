@@ -1,5 +1,4 @@
-const api = '/api';
-
+const api = '/api'; // ✅ Works on both localhost and production
 
 function login() {
   fetch(`${api}/auth/login`, {
@@ -10,7 +9,10 @@ function login() {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value
     })
-  }).then(res => res.text()).then(alert);
+  })
+    .then(res => res.text())
+    .then(alert)
+    .catch(err => console.error('Login error:', err));
 }
 
 function addPost() {
@@ -22,7 +24,11 @@ function addPost() {
       title: document.getElementById('title').value,
       content: document.getElementById('content').value
     })
-  }).then(res => res.text()).then(alert);
+  })
+    .then(res => res.text())
+    .then(alert)
+    .then(loadPosts)
+    .catch(err => console.error('Add post error:', err));
 }
 
 function loadPosts() {
@@ -30,6 +36,8 @@ function loadPosts() {
     .then(res => res.json())
     .then(posts => {
       const container = document.getElementById('posts') || document.getElementById('admin-posts');
+      if (!container) return; // ✅ Prevent error if not on posts/admin page
+
       container.innerHTML = '';
       posts.forEach(post => {
         const div = document.createElement('div');
@@ -37,14 +45,19 @@ function loadPosts() {
           <button onclick="deletePost(${post.id})">Delete</button>`;
         container.appendChild(div);
       });
-    });
+    })
+    .catch(err => console.error('Load posts error:', err));
 }
 
 function deletePost(id) {
   fetch(`${api}/posts/${id}`, {
     method: 'DELETE',
     credentials: 'include'
-  }).then(res => res.text()).then(alert).then(loadPosts);
+  })
+    .then(res => res.text())
+    .then(alert)
+    .then(loadPosts)
+    .catch(err => console.error('Delete post error:', err));
 }
 
 window.onload = loadPosts;
