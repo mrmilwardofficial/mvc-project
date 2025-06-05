@@ -4,6 +4,8 @@ import com.example.mvc.model.User;
 import com.example.mvc.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:5500", allowCredentials = "true")
@@ -29,4 +31,11 @@ public class AuthController {
         session.invalidate();
         return "Logged out";
     }
+    @GetMapping("/check")
+public ResponseEntity<?> checkLogin(HttpSession session) {
+    return session.getAttribute("user") != null
+        ? ResponseEntity.ok().build()
+        : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+}
+
 }

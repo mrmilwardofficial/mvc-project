@@ -59,5 +59,12 @@ function deletePost(id) {
     .then(loadPosts)
     .catch(err => console.error('Delete post error:', err));
 }
+function logout() {
+  fetch(`${api}/auth/logout`, {
+    method: 'POST',
+    credentials: 'include'
+  }).then(() => location.href = '/login.html');
+}
+
 
 window.onload = loadPosts;

@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin</title>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <h1>Admin Panel</h1>
-  <input type="text" id="title" placeholder="Title"><br>
-  <textarea id="content" placeholder="Content"></textarea><br>
-  <button onclick="addPost()">Add Post</button>
-  <div id="admin-posts"></div>
-  <script src="app.js"></script>
+<h1>Admin Panel</h1>
+<input id="title" placeholder="Post Title" />
+<textarea id="content" placeholder="Post Content"></textarea>
+<button onclick="addPost()">Add Post</button>
+<button onclick="logout()">Logout</button>
+<div id="admin-posts"></div>
+<script>
+  fetch('/api/auth/check', { credentials: 'include' })
+    .then(res => res.status === 200 ? null : location.href = '/login.html');
+</script>
+<script src="app.js"></script>
 </body>
 </html>
